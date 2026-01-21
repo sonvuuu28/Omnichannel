@@ -1,0 +1,5 @@
+id, name, description, price, currency, availability, condition, link, image_link, brand, updated_at
+prd_0001, Product 1, Description for product 1, 19.99, USD, in stock, new, http://example.com/product1, http://example.com/product1.jpg, BrandA, 2024-06-01T12:00:00
+prd_0002, Product 2, Description for product 2, 29.99, USD, in stock, new, http://example.com/product2, http://example.com/product2.jpg, BrandB, 2024-06-01T12:00:00
+prd_0003, Product 3, Description for product 3, 39.99, USD, out of stock, new, http://example.com/product3, http://example.com/product3.jpg, BrandC, 2024-06-01T12:00:00
+prd_0004, Product 4, Description for product 4, 49.99, USD, in stock, new, http://example.com/product4, http://example.com/product4.jpg, BrandD, 2024-06-01T12:00:00
