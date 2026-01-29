@@ -1,0 +1,39 @@
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    env_file:
+      - ../env/docker.env
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:?error}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:?error}
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"   
+      - "9001:9001"  
+
+  spark-master:
+    build:
+      context: ./Spark/
+      dockerfile: Dockerfile    
+    image: da-spark-image
+    container_name: spark
+    env_file:
+      - ../env/docker.env
+    command: master
+    volumes:
+      - ../code:/opt/spark/code        
+      - ./Spark/lib:/opt/spark/driver    
+      - spark-logs:/opt/spark/spark-events  # Lưu event logs
+      - ../env/minio-local.env:/opt/spark/env/minio-local.env
+    ports:
+      - '9090:8080'    # Spark UI
+      - '7077:7077'    # Spark Master
+      - '4041:4040'    # Spark job UI
+
+volumes:
+  minio_data:
+    driver: local
+  spark-logs:
